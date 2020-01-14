@@ -4,11 +4,26 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.internal.support.FileReader;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class CommonRestCalls {
 
+    public static JSONObject EnvDetails = null;
+    //Environment details reader method
+    public static JSONObject getEnvDetails(String env,String envFileLocation) throws IOException {
+        EnvDetails = JsonFileReader.reader(envFileLocation);
+        if (env.equalsIgnoreCase("local")) {
+            EnvDetails = EnvDetails.getJSONObject("environmentDetails").getJSONObject("localEnv");
+        } else {
+            System.out.println("Invalid ENV");
+        }
+        return EnvDetails;
+    }
     //This method is used to call simple GET rest call
     public Response callGET(String baseUrl , String path , String okapi) {
         RestAssured.baseURI = baseUrl;
