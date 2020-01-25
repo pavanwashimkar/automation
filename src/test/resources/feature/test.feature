@@ -9,7 +9,7 @@ Feature: This is to test the BDD framework
   Scenario Outline: This test is to add new topic
     Given As a user i want to add new topic with <"id"> , <"name"> and <"description"> in the topic database
     When user click on the add topic url with new topic details
-    Then the new topic gets added to the topic database
+    Then the new topic with "id" gets added to the topic database
     Examples:
       | "id" | "name" | "description" |
       |"id-4"  |"Spring-4"|"this is spring V4"|

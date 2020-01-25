@@ -70,9 +70,9 @@ public class testDef {
     }
 
     @Given("As a user i want to add new topic with {string} , {string} and {string} in the topic database")
-    public void asAUserIWantToAddNewTopicWithAndInTheTopicDatabase(String arg0, String arg1, String arg2) {
-        System.out.println("Adding new topic ::" + arg0 + arg1 + arg2);
-        inputRequest = new InputRequest(arg0,arg1,arg2);
+    public void asAUserIWantToAddNewTopicWithAndInTheTopicDatabase(String id, String name, String description) {
+        System.out.println("Adding new topic ::" + id + name + description);
+        inputRequest = new InputRequest(id, name, description);
     }
 
     @When("user click on the add topic url with new topic details")
@@ -84,13 +84,14 @@ public class testDef {
                 EnvDetails.getString("getTopicApi"),"No", jsonNode);
     }
 
-    @Then("the new topic gets added to the topic database")
-    public void theNewTopicGetsAddedToTheTopicDatabase() throws JSONException {
+    @Then("the new topic with {string} gets added to the topic database")
+    public void theNewTopicGetsAddedToTheTopicDatabase(String id) throws JSONException {
         Assert.assertEquals(HttpStatus.OK.value(), response.getStatusCode());
         user_click_on_get_topic_url();
         System.out.println("Response is :: " + response.asString());
-        Assert.assertEquals(true,response.asString().contains("id-4"));
-        Assert.assertEquals(true,response.asString().contains("id-5"));
+        Assert.assertEquals(true,response.asString().contains(id));
     }
+
+
 
 }
