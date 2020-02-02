@@ -1,6 +1,6 @@
 Feature: This is to test the BDD framework
 
-  @Test
+  @Test1
   Scenario: This test is just for testing the integration
     Given As a user wants to us the topic API
     When user click on get topic url

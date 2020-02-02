@@ -23,7 +23,7 @@ import org.springframework.http.HttpStatus;
 import java.io.IOException;
 
 
-public class testDef {
+public class testStepDef {
 
     private CommonRestCalls commonRestCalls = new CommonRestCalls();
     @Autowired
